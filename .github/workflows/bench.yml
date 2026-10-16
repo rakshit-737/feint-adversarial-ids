@@ -82,7 +82,7 @@ jobs:
           fi
           python -m feint seeds --data $d --seeds ${{ matrix.seed }} --adv --poison ${{ inputs.extra }} \
             --out out/seed${{ matrix.seed }}
-      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: ${{ inputs.study }}-seed${{ matrix.seed }}
           path: out/
@@ -105,7 +105,7 @@ jobs:
           path: parts
           pattern: ${{ inputs.study }}-seed*
       - run: PYTHONPATH=. python scripts/merge_seeds.py merged $(ls parts/*/seed*/seeds.json parts/*/seed*/ablation.json 2>/dev/null)
-      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: ${{ inputs.study }}-merged
           path: merged/
@@ -158,7 +158,7 @@ jobs:
             data-2018-pin) mkdir -p out
               python scripts/download_cicids2018.py --all --allow-unpinned --print-pins | tee out/pins.txt ;;
           esac
-      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: ${{ inputs.study }}
           path: out/
@@ -193,7 +193,7 @@ jobs:
       - if: always()
         run: mkdir -p out && cp out-log.txt out/ || true
       - if: always()
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: repro-a2pm
           path: out/
